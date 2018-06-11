@@ -1,9 +1,10 @@
 from .base import *
 
 DEBUG = False
-# Parse database configuration from $DATABASE_URL
-# import dj_database_url
-# DATABASES['default'] =  dj_database_url.config()
+
+import django_heroku
+import dj_database_url
+django_heroku.settings(locals())
 
 import os
 

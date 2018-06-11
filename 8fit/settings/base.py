@@ -81,8 +81,10 @@ WSGI_APPLICATION = '8fit.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': '8fit_db',
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
 
@@ -147,8 +149,5 @@ WAGTAIL_SITE_NAME = "8fit"
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://eightfit-ony.heroku.com'
 
-# import django_heroku
-# django_heroku.settings(locals())
-# ssl_require = os.environ['ENV'] != 'development'
-# locals()['DATABASES']['default'] = dj_database_url.config(
-#     conn_max_age=django_heroku.MAX_CONN_AGE, ssl_require=ssl_require)
+import dj_database_url
+DATABASES = {'default': dj_database_url.parse('postgres://volcugwjyeargr:bebf7f4da6f26c3903bd18e11fbbabd5890a95964187eb907329f6f9e9162b63@ec2-54-75-244-248.eu-west-1.compute.amazonaws.com:5432/deuglj5dpkvu7t')}
