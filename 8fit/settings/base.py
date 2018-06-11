@@ -147,5 +147,8 @@ WAGTAIL_SITE_NAME = "8fit"
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://eightfit-ony.heroku.com'
 
-import django_heroku
-django_heroku.settings(locals())
+# import django_heroku
+# django_heroku.settings(locals())
+# ssl_require = os.environ['ENV'] != 'development'
+# locals()['DATABASES']['default'] = dj_database_url.config(
+#     conn_max_age=django_heroku.MAX_CONN_AGE, ssl_require=ssl_require)

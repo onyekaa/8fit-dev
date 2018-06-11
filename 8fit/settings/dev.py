@@ -9,14 +9,8 @@ SECRET_KEY = '0)baa^zd92m)(nfd3304wjdbr*^6=%_gx^*0f8c+nt@@_%fh3u'
 # SECURITY WARNING: define the correct hosts in production!
 ALLOWED_HOSTS = ['*']
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-# Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 try:
