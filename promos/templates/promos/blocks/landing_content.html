@@ -1,0 +1,20 @@
+{% load wagtailimages_tags %}
+{% image cblock.value.screenshot fill-200x200 as screenshot %}
+
+<section>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6  {% if forloop.counter|divisibleby:"2" %} order-lg-1{% else %}order-lg-2 {% endif %}">
+        <div class="p-5">
+          <img class="img-fluid rounded-circle" src="{{ screenshot.url }}" alt="">
+        </div>
+      </div>
+      <div class="col-lg-6 {% if forloop.counter|divisibleby:"2" %} order-lg-2{% else %}order-lg-1 {% endif %}">
+        <div class="p-5">
+          <h2 class="display-4">{{ cblock.value.heading }}</h2>
+           {{ cblock.value.content|linebreaks }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

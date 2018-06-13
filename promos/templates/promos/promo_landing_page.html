@@ -21,7 +21,9 @@
  </header>
 
 
-
+ {% for cblock in page.body %}
+  {% include 'promos/blocks/landing_content.html' %}
+  {% endfor %}
 
 
  <!-- Footer -->
