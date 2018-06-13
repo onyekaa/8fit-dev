@@ -1,12 +1,12 @@
 {% load wagtailimages_tags %}
-{% image cblock.value.screenshot fill-200x200 as screenshot %}
+{% image cblock.value.screenshot height-400 as screenshot %}
 
-<section>
+<section class="border-bottom">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-6  {% if forloop.counter|divisibleby:"2" %} order-lg-1{% else %}order-lg-2 {% endif %}">
-        <div class="p-5">
-          <img class="img-fluid rounded-circle" src="{{ screenshot.url }}" alt="">
+        <div class="px-5 pt-5  pb-0">
+          <img class="img-fluid " src="{{ screenshot.url }}" alt="">
         </div>
       </div>
       <div class="col-lg-6 {% if forloop.counter|divisibleby:"2" %} order-lg-2{% else %}order-lg-1 {% endif %}">

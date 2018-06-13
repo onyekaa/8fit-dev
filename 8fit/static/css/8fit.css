@@ -67,3 +67,17 @@ header.masthead .masthead-content .masthead-subheading {
     font-size: 4rem;
   }
 }
+.bg-primary {
+  background-color: #08da8a !important;
+  color: white;
+}
+.btn-primary {
+  background-color: #08da8a;
+}
+.text-primary {
+  color: #08da8a !important;
+}
+
+#purchase .container {
+  max-width: 750px;
+}
