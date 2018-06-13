@@ -9,8 +9,14 @@ SECRET_KEY = '0)baa^zd92m)(nfd3304wjdbr*^6=%_gx^*0f8c+nt@@_%fh3u'
 # SECURITY WARNING: define the correct hosts in production!
 ALLOWED_HOSTS = ['*']
 
+# Use sqlite locally
 
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 
 try:
