@@ -45,9 +45,13 @@ header.masthead .masthead-content {
   z-index: 1;
   position: relative;
 }
+.masthead .container {
+  background: rgba(255, 255, 255, 0.6392156862745098);
+  max-width: 750px;s
+}
 
 header.masthead .masthead-content .masthead-heading {
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 header.masthead .masthead-content .masthead-subheading {
@@ -61,10 +65,10 @@ header.masthead .masthead-content .masthead-subheading {
     padding-bottom: 10rem;
   }
   header.masthead .masthead-content .masthead-heading {
-    font-size: 6rem;
+    font-size: 4rem;
   }
   header.masthead .masthead-content .masthead-subheading {
-    font-size: 4rem;
+    font-size: 3rem;
   }
 }
 .bg-primary {
@@ -73,9 +77,18 @@ header.masthead .masthead-content .masthead-subheading {
 }
 .btn-primary {
   background-color: #08da8a;
+  border-color: transparent;
+}
+.btn-primary:hover {
+  background-color: #08da8a;
+  border-color: transparent;
+
 }
 .text-primary {
   color: #08da8a !important;
+}
+.text-sm {
+  font-size: 60%;
 }
 
 #purchase .container {

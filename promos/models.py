@@ -42,9 +42,12 @@ class PromoLandingPage(Page):
         ('EUR', 'EUR €'),
     )
     hero_title = models.CharField(max_length=200)
-    body = StreamField([
-        ('content', ContentBlock()),
-    ])
+    overview = RichTextField(blank=True, null=True)
+    body = StreamField(
+        blocks.StreamBlock([
+        ('content', ContentBlock())
+    ], max_num=3)
+    )
 
     hero_image = models.ForeignKey(
         'wagtailimages.Image',
@@ -72,6 +75,7 @@ class PromoLandingPage(Page):
     content_panels = [
         FieldPanel('title'),
         FieldPanel('hero_title'),
+        FieldPanel('overview'),
         StreamFieldPanel('body'),
         ImageChooserPanel('hero_image'),
         MultiFieldPanel(

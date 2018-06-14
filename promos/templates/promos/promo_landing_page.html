@@ -13,17 +13,23 @@
 
 {% block content %}
 {% image page.hero_image original as hero_image %}
-<header class="masthead text-center text-white" style="background:url('{{ hero_image.url }}') no-repeat;">
+<header class="masthead text-center" style="background:url('{{ hero_image.url }}') no-repeat;">
    <div class="masthead-content">
-     <div class="container">
-       <h1 class="masthead-heading mb-0">{{ page.hero_title }}</h1>
-       <h2 class="masthead-subheading mb-0">{{ page.offer_summary }}</h2>
+     <div class="container py-5 rounded">
+       <h2 class="masthead-heading mb-0">{{ page.hero_title }}</h2>
+       <h3 class="masthead-subheading mb-0">{{ page.offer_summary }}</h3>
        <a href="#purchase" class="btn btn-primary btn-xl rounded-pill mt-5">{{ page.CTA }}</a>
      </div>
    </div>
 
  </header>
-
+ {% if page.overview %}
+ <section id="overview" class="bg-white border-bottom">
+   <div class="container  py-5 d-block text-center ">
+   {{ page.overview|safe }}
+ </div>
+</section>
+ {% endif %}
 
  {% for cblock in page.body %}
   {% include 'promos/blocks/landing_content.html' %}
@@ -33,16 +39,20 @@
 <section id="purchase" class="bg-light pt-4">
   <div class="container bg-white ">
     <div class="row">
-      <div class="col-md-3">
-        <div class="pt-5">
-          <h3 class="text-primary">8fit <span class="badge bg-primary text-white">PRO</span></h3>
-          {{ page.currency }}{{ page.price}}</h4>
-
+      <div class="col-md-4 border-right">
+        <div class="pt-5 d-flex justify-content-center align-items-center">
+          <h1 class="text-primary d-inline-block">8fit </h1><span class="ml-1 badge bg-primary text-white d-inline-block">PRO</span></h1>
+        </div>
+        <div class="text-center ">
+          <h3>{{ page.get_currency_display }}{{ page.price}}</h3>
         </div>
       </div>
-      <div class="col-md-9">
+      <div class="col-md-8 ">
         <div class="p-5">
-          <h3>{{ page.plan.name }}</h3>
+          <div class="text-center">
+
+        </div>
+        <hr/>
            {{ cblock.value.content|linebreaks }}
 
 
