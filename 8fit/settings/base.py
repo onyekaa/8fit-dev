@@ -154,5 +154,19 @@ WAGTAIL_SITE_NAME = "8fit"
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://eightfit-ony.heroku.com'
 
-import dj_database_url
-DATABASES = {'default': dj_database_url.parse('postgres://volcugwjyeargr:bebf7f4da6f26c3903bd18e11fbbabd5890a95964187eb907329f6f9e9162b63@ec2-54-75-244-248.eu-west-1.compute.amazonaws.com:5432/deuglj5dpkvu7t')}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+        },
+    },
+}
