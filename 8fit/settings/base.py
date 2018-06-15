@@ -164,9 +164,14 @@ LOGGING = {
         },
     },
     'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'formatter': 'verbose',
+        },
         'django.request': {
             'handlers': ['console'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+            'level': 'INFO',
             'formatter': 'verbose',
         },
     },

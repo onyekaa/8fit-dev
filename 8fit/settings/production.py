@@ -1,6 +1,6 @@
 from .base import *
 
-DEBUG = False
+DEBUG = True
 
 import os
 
@@ -12,7 +12,7 @@ django_heroku.settings(locals())
 
 
 INSTALLED_APPS += (
-    'storages'
+    'storages',
 )
 
 try:
