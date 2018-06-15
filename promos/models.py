@@ -10,6 +10,7 @@ from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, InlinePanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
+from wagtailcolumnblocks.blocks import ColumnsBlock
 
 
 @register_snippet
@@ -25,24 +26,85 @@ class PromoPlan(models.Model):
         verbose_name_plural = 'Promo Plans'
 
 
+# Content blocks that will be used in the columngrid block
+class CommonBlocks(blocks.StreamBlock):
+    content = blocks.RichTextBlock(group="Common")
+
+# Column Types
+class ColumnBlocks(blocks.StreamBlock):
+    column_1_1 = ColumnsBlock(
+        CommonBlocks(),
+        ratios=(1, 1),
+        label="Two halves",
+        group="Columns",
+    )
+    column_2_1 = ColumnsBlock(
+        CommonBlocks(max_num=1),
+        ratios=(2, 1),
+        label="Two thirds/One third",
+        group="Columns",
+    )
+    column_1_1_1 = ColumnsBlock(
+        CommonBlocks(),
+        ratios=(1, 1, 1),
+        label="Three thirds",
+        group="Columns",
+    )
+
+
+class AllBlocks(ColumnBlocks, CommonBlocks):
+    pass
+
+
+
+""" Highlight Colors:
+
+    Used for changing colours of headers/links to liven up pages
+    It's also possible to make these dynamically created choices.
+"""
+COLOR_CHOICES = (
+    ('green', 'Green'),
+    ('orange', 'Orange'),
+    ('red', 'Red'),
+)
+
 class ContentBlock(blocks.StructBlock):
     heading = blocks.CharBlock()
-    content = blocks.CharBlock(help_text="Content Below Headline")
+    content = blocks.RichTextBlock(features=['h4', 'bold', 'italic', 'link', 'ol', 'ul'])
     screenshot = ImageChooserBlock(required=False)
+    highlight_color = blocks.ChoiceBlock(choices=COLOR_CHOICES, blank=True, null=True)
 
     class Meta:
         icon = 'user'
         form_classname = 'content-block struct-block'
 
 
+class FeatureBlock(blocks.StructBlock):
+    heading = blocks.CharBlock()
+    summary = blocks.RichTextBlock(features=['h4', 'bold', 'italic', 'link', 'ol', 'ul'])
+    image = ImageChooserBlock(required=False)
+    rounded = models.BooleanField(default=False, help_text="Make the featured image a circle.")
+
+
+    class Meta:
+        icon = 'user'
+        form_classname = 'content-block struct-block'
+
+
+
 class PromoLandingPage(Page):
     TMP_CURRENCIES = (
-        ('USD', 'USD $'),
-        ('GBP', 'GBP £'),
-        ('EUR', 'EUR €'),
+        ('USD', '$'),
+        ('GBP', '£'),
+        ('EUR', '€'),
     )
     hero_title = models.CharField(max_length=200)
-    overview = RichTextField(blank=True, null=True)
+    overview = StreamField(
+        blocks.StreamBlock([
+        ('freeform', blocks.RichTextBlock()),
+        ('two_three_column_grid', ColumnBlocks())
+    ], max_num=3)
+    )
     body = StreamField(
         blocks.StreamBlock([
         ('content', ContentBlock())
@@ -75,7 +137,7 @@ class PromoLandingPage(Page):
     content_panels = [
         FieldPanel('title'),
         FieldPanel('hero_title'),
-        FieldPanel('overview'),
+        StreamFieldPanel('overview'),
         StreamFieldPanel('body'),
         ImageChooserPanel('hero_image'),
         MultiFieldPanel(

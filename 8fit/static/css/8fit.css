@@ -1,5 +1,6 @@
 
 body {
+  font-family: 'Lato';
 }
 
 h1,
@@ -9,6 +10,11 @@ h4,
 h5,
 h6 {
   font-weight: 500 !important;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 .btn-xl {
@@ -93,4 +99,9 @@ header.masthead .masthead-content .masthead-subheading {
 
 #purchase .container {
   max-width: 750px;
+}
+
+.#overview div[class^="col-"] img{
+    max-width: 100%;
+    height: auto;
 }

@@ -3,15 +3,15 @@
 
 <section class="border-bottom">
   <div class="container">
-    <div class="row align-items-center">
+    <div class="row align-items-center accent-{{ cblock.value.highlight_color }}">
       <div class="col-lg-6  {% if forloop.counter|divisibleby:"2" %} order-lg-1{% else %}order-lg-2 {% endif %}">
-        <div class="px-5 pt-5  pb-0">
+        <div class="px-5 pt-5  pb-0  {% if forloop.counter|divisibleby:"2" %} text-md-right {% endif %}">
           <img class="img-fluid " src="{{ screenshot.url }}" alt="">
         </div>
       </div>
       <div class="col-lg-6 {% if forloop.counter|divisibleby:"2" %} order-lg-2{% else %}order-lg-1 {% endif %}">
-        <div class="p-5">
-          <h2 class="display-4">{{ cblock.value.heading }}</h2>
+        <div class="p-5  {% if not forloop.counter|divisibleby:"2" %} text-md-right {% endif %}">
+          <h2 class="display-4 section-header">{{ cblock.value.heading }}</h2>
            {{ cblock.value.content|linebreaks }}
         </div>
       </div>

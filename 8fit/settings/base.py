@@ -20,6 +20,7 @@ INSTALLED_APPS = [
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
+    'wagtail.contrib.settings',
     'wagtail.embeds',
     'wagtail.sites',
     'wagtail.users',
@@ -29,6 +30,8 @@ INSTALLED_APPS = [
     'wagtail.search',
     'wagtail.admin',
     'wagtail.core',
+    'wagtail.contrib.table_block',
+    'wagtailcolumnblocks',
 
     'modelcluster',
     'taggit',
@@ -146,6 +149,8 @@ MEDIA_URL = '/media/'
 
 WAGTAIL_SITE_NAME = "8fit"
 
+# Import extra features for Streamfield
+from uwkm_streamfields.settings.base import *
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://eightfit-ony.heroku.com'
