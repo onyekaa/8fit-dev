@@ -150,7 +150,6 @@ MEDIA_URL = '/media/'
 WAGTAIL_SITE_NAME = "8fit"
 
 # Import extra features for Streamfield
-from uwkm_streamfields.settings.base import *
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://eightfit-ony.heroku.com'
