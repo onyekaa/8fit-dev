@@ -17,7 +17,7 @@
    <div class="masthead-content">
      <div class="container py-5 rounded">
        <h2 class="masthead-heading mb-0">{{ page.hero_title }}</h2>
-       <h3 class="masthead-subheading mb-0">{{ page.offer_summary }}</h3>
+       <h4 class="mb-0 text-primary">{{ page.hero_subtitle }}</h4>
        <a href="#purchase" class="btn btn-primary btn-xl rounded-pill mt-5">{{ page.CTA }}</a>
      </div>
    </div>
@@ -27,13 +27,21 @@
  <section id="overview" class="bg-white border-bottom">
    <div class="container  py-5 d-block text-center ">
      {{ page.overview }}
+     <div class="row d-flex">
+     {% for cblock in page.body %}
+      {% include 'promos/blocks/feature_links.html' %}
+    {% endfor %}
+  </div>
+
  </div>
 </section>
  {% endif %}
 
  {% for cblock in page.body %}
+
   {% include 'promos/blocks/landing_content.html' %}
-  {% endfor %}
+{% endfor %}
+
 
 <!-- Payment Block -->
 <section id="purchase" class="bg-light pt-4">
@@ -45,17 +53,21 @@
         </div>
         <div class="text-center ">
           <h3>{{ page.get_currency_display }}{{ page.price}}</h3>
+          {% if page.benefits %}
+          <div class="pt-2">
+          {{ page.benefits|safe }}
+        </div>
+          {% endif %}
         </div>
       </div>
       <div class="col-md-8 ">
         <div class="p-5">
           <div class="text-center">
+            {{ pa}}
 
         </div>
         <hr/>
            {{ cblock.value.content|linebreaks }}
-
-
            {% include 'promos/blocks/payment_form.html'%}
         </div>
       </div>

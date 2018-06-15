@@ -1,7 +1,7 @@
 {% load wagtailimages_tags %}
 {% image cblock.value.screenshot height-400 as screenshot %}
 
-<section class="border-bottom">
+<section id="{{ cblock.value.slug }}" class="feature border-bottom">
   <div class="container">
     <div class="row align-items-center accent-{{ cblock.value.highlight_color }}">
       <div class="col-lg-6  {% if forloop.counter|divisibleby:"2" %} order-lg-1{% else %}order-lg-2 {% endif %}">
@@ -11,7 +11,7 @@
       </div>
       <div class="col-lg-6 {% if forloop.counter|divisibleby:"2" %} order-lg-2{% else %}order-lg-1 {% endif %}">
         <div class="p-5  {% if not forloop.counter|divisibleby:"2" %} text-md-right {% endif %}">
-          <h2 class="display-4 section-header">{{ cblock.value.heading }}</h2>
+          <h2 class="section-header">{{ cblock.value.heading }}</h2>
            {{ cblock.value.content|linebreaks }}
         </div>
       </div>

@@ -1,0 +1,11 @@
+{% load wagtailimages_tags %}
+{% image cblock.value.feautre_icon fill-200x200 as icon %}
+
+      <div class="col">
+        <div class="px-3 pt-3  pb-0">
+          <a href="#{{ cblock.value.slug }}">
+          <img class="img-fluid " src="{{ icon.url }}" alt="">
+          <h3 class="text-primary">{{ cblock.value.feature_name }}</h3>
+        </a>
+        </div>
+      </div>

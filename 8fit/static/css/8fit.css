@@ -17,6 +17,9 @@ img {
   height: auto;
 }
 
+a { color: #08da8a; }
+a:hover { color: #08da8a; text-decoration: none;}
+
 .btn-xl {
   text-transform: uppercase;
   padding: 1.5rem 3rem;
@@ -52,7 +55,7 @@ header.masthead .masthead-content {
   position: relative;
 }
 .masthead .container {
-  background: rgba(255, 255, 255, 0.6392156862745098);
+  background: rgba(255, 255, 255, 0.8);
   max-width: 750px;s
 }
 
@@ -101,7 +104,14 @@ header.masthead .masthead-content .masthead-subheading {
   max-width: 750px;
 }
 
-.#overview div[class^="col-"] img{
+#overview div[class^="col-"] img{
     max-width: 100%;
     height: auto;
 }
+
+.feature {
+}
+.feature ul li { list-style: none; }
+.feature .accent-red .section-header { color: red}
+.feature .accent-green .section-header { color: #08da8a}
+.feature .accent-orange .section-header { color: #ffa93a}

@@ -68,28 +68,22 @@ COLOR_CHOICES = (
     ('red', 'Red'),
 )
 
+
 class ContentBlock(blocks.StructBlock):
+    feature_name = blocks.CharBlock()
     heading = blocks.CharBlock()
     content = blocks.RichTextBlock(features=['h4', 'bold', 'italic', 'link', 'ol', 'ul'])
-    screenshot = ImageChooserBlock(required=False)
-    highlight_color = blocks.ChoiceBlock(choices=COLOR_CHOICES, blank=True, null=True)
+    screenshot = ImageChooserBlock()
+    highlight_color = blocks.ChoiceBlock(
+        choices=COLOR_CHOICES,
+        required=False,
+        blank=True, null=True)
+    feautre_icon = ImageChooserBlock(help_text="For linking to the featured section")
+    slug = blocks.CharBlock()
 
     class Meta:
         icon = 'user'
         form_classname = 'content-block struct-block'
-
-
-class FeatureBlock(blocks.StructBlock):
-    heading = blocks.CharBlock()
-    summary = blocks.RichTextBlock(features=['h4', 'bold', 'italic', 'link', 'ol', 'ul'])
-    image = ImageChooserBlock(required=False)
-    rounded = models.BooleanField(default=False, help_text="Make the featured image a circle.")
-
-
-    class Meta:
-        icon = 'user'
-        form_classname = 'content-block struct-block'
-
 
 
 class PromoLandingPage(Page):
@@ -98,17 +92,18 @@ class PromoLandingPage(Page):
         ('GBP', '£'),
         ('EUR', '€'),
     )
-    hero_title = models.CharField(max_length=200)
+    hero_title = models.CharField(max_length=100)
+    hero_subtitle = models.CharField(max_length=200, blank=True, null=True)
     overview = StreamField(
         blocks.StreamBlock([
         ('freeform', blocks.RichTextBlock()),
         ('two_three_column_grid', ColumnBlocks())
-    ], max_num=3)
+    ], max_num=3), null=True, blank=True
     )
     body = StreamField(
         blocks.StreamBlock([
         ('content', ContentBlock())
-    ], max_num=3)
+    ], max_num=3), verbose_name="Features"
     )
 
     hero_image = models.ForeignKey(
@@ -126,27 +121,34 @@ class PromoLandingPage(Page):
     )
     price = models.DecimalField(decimal_places=2, max_digits=10)
     currency = models.CharField(max_length=3, choices=TMP_CURRENCIES)
-    promo_duration = models.DateTimeField(help_text="Set the time when you want this to expire. Leave empty for permanent promo page")
+    promo_duration = models.DateTimeField(
+        help_text="Set the time when you want this to expire.",
+        blank=True,
+        null=True
+    )
     coupon = models.CharField(max_length=50, blank=True, null=True)
-
+    benefits = RichTextField(features=['h4', 'bold', 'italic', 'ol', 'ul'], blank=True, null=True)
     CTA = models.CharField(max_length=200, default="Start Your Plan Now.")
 
     created_date = models.DateTimeField(editable=False, auto_now_add=True)
     modified_date = models.DateTimeField(editable=False, db_index=True, auto_now=True)
 
     content_panels = [
+        ImageChooserPanel('hero_image'),
         FieldPanel('title'),
         FieldPanel('hero_title'),
+        FieldPanel('hero_subtitle'),
         StreamFieldPanel('overview'),
         StreamFieldPanel('body'),
-        ImageChooserPanel('hero_image'),
         MultiFieldPanel(
         [
             FieldPanel('plan'),
             FieldPanel('price'),
             FieldPanel('currency'),
             FieldPanel('coupon'),
-            FieldPanel('promo_duration')
+            FieldPanel('promo_duration'),
+            FieldPanel('CTA'),
+            FieldPanel('benefits')
         ],
         heading="Promo Plan Details",
         classname="collapsible"
