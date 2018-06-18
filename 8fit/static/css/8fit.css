@@ -115,3 +115,8 @@ header.masthead .masthead-content .masthead-subheading {
 .feature .accent-red .section-header { color: red}
 .feature .accent-green .section-header { color: #08da8a}
 .feature .accent-orange .section-header { color: #ffa93a}
+
+.benefits ul{
+  list-style: none;
+  padding-left: 0;
+}
