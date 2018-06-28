@@ -105,7 +105,12 @@ class PromoLandingPage(Page):
         ('content', ContentBlock())
     ], max_num=3), verbose_name="Features"
     )
-
+    extra_content = StreamField(
+        blocks.StreamBlock([
+        ('freeform', blocks.RichTextBlock()),
+        ('two_three_column_grid', ColumnBlocks())
+    ], max_num=3), null=True, blank=True
+    )
     hero_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -140,6 +145,7 @@ class PromoLandingPage(Page):
         FieldPanel('hero_subtitle'),
         StreamFieldPanel('overview'),
         StreamFieldPanel('body'),
+        StreamFieldPanel('extra_content'),
         MultiFieldPanel(
         [
             FieldPanel('plan'),

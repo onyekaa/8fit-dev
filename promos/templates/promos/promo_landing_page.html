@@ -42,7 +42,13 @@
   {% include 'promos/blocks/landing_content.html' %}
 {% endfor %}
 
-
+{% if page.extra_content %}
+<section id="overview" class="bg-white border-bottom">
+  <div class="container  py-5 d-block text-center ">
+    {{ page.extra_content }}
+  </div>
+</section>
+{% endif %}
 <!-- Payment Block -->
 <section id="purchase" class="bg-light pt-4">
   <div class="container bg-white ">
