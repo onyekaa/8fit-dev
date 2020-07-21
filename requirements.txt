@@ -33,7 +33,7 @@ stripe==1.82.1
 Unidecode==0.4.21
 urllib3==1.22
 uwkm-streamfields==1.4.0
-wagtail==2.1
+wagtail==2.7.4
 wagtailcolumnblocks==2.0.0
 webencodings==0.5.1
 whitenoise==3.3.1
